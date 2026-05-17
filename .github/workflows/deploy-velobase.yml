@@ -25,6 +25,28 @@ jobs:
             -u ${{ steps.config.outputs.username }} \
             -p ${{ steps.config.outputs.password }}
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Next.js
+        run: pnpm build
+        env:
+          SKIP_ENV_VALIDATION: "true"
+
+      - name: Create empty .env for Docker builds
+        run: touch .env
+
       - name: Build & Push per-service images
         run: |
           REPO=${{ steps.config.outputs.repository }}
