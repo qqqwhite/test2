@@ -2,54 +2,53 @@
 
 import { Sparkles, Zap, Lock, CreditCard } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const features = [
   {
     icon: Sparkles,
-    title: "AI-First Architecture",
-    description: "Multi-provider AI SDK with OpenAI, Anthropic, Google Gemini, and more — ready out of the box.",
+    key: "preview",
     color: "text-blue-500",
   },
   {
     icon: Zap,
-    title: "Ship Fast",
-    description: "Auth, billing, payments, background jobs, and email — all pre-wired so you can focus on your core feature.",
+    key: "workflow",
     color: "text-purple-500",
   },
   {
     icon: Lock,
-    title: "Production Ready",
-    description: "Rate limiting, abuse prevention, analytics, and admin dashboard included from day one.",
+    key: "reliability",
     color: "text-emerald-500",
   },
   {
     icon: CreditCard,
-    title: "Flexible Billing",
-    description: "Stripe, Airwallex, crypto payments, and a credit-based system with subscriptions and promo codes.",
+    key: "launch",
     color: "text-orange-500",
   },
 ];
 
 export function Features() {
+  const t = useTranslations("landing.features");
+
   return (
-    <section className="w-full py-32 px-6 relative overflow-hidden bg-background">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+    <section className="w-full px-6 py-32 relative overflow-hidden bg-background">
+      <div className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[100px] dark:bg-blue-500/5" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-[100px] dark:bg-purple-500/5" />
 
       <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
           <div className="max-w-2xl">
             <h2 className="text-sm font-medium text-blue-500 tracking-widest uppercase mb-6">
-              Framework Features
+              {t("eyebrow")}
             </h2>
             <h3 className="text-4xl md:text-6xl font-medium tracking-tight text-foreground leading-[1.1]">
-              Everything you need <br/>
-              <span className="text-muted-foreground">to launch your AI SaaS.</span>
+              {t("titleLine1")} <br/>
+              <span className="text-muted-foreground">{t("titleLine2")}</span>
             </h3>
           </div>
           
           <p className="text-lg text-muted-foreground max-w-sm leading-relaxed font-light">
-            A full-stack Next.js framework with all the infrastructure a solo developer needs to build, launch, and scale an AI product.
+            {t("description")}
           </p>
         </div>
 
@@ -73,11 +72,11 @@ export function Features() {
               </div>
 
               <h4 className="text-xl font-medium mb-3 text-foreground tracking-tight group-hover:translate-x-1 transition-transform duration-300">
-                {feature.title}
+                {t(`items.${feature.key}.title`)}
               </h4>
               
               <p className="text-muted-foreground leading-relaxed font-light text-base">
-                {feature.description}
+                {t(`items.${feature.key}.description`)}
               </p>
             </div>
           ))}

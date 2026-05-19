@@ -40,7 +40,8 @@
     "terms": "Terms",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "refundPolicy": "Refund Policy"
+    "refundPolicy": "Refund Policy",
+    "footerCopyright": "© {year} 测试项目。保留所有权利。"
   },
   "auth": {
     "welcomeTitle": "Welcome to AI SaaS",
@@ -123,10 +124,51 @@
   },
   "landing": {
     "hero": {
-      "titleLine1": "Build Your AI App",
-      "titleLine2": "In Record Time",
-      "subtitle": "A production-ready AI SaaS framework with auth, billing, payments, and AI chat built in.",
-      "subtitleAccent": "Focus on your core feature. We handle the rest."
+      "eyebrow": "Velobase 部署测试",
+      "titleLine1": "测试项目",
+      "titleLine2": "已准备就绪",
+      "subtitle": "这是用于验证线上发布效果的测试项目落地页。",
+      "subtitleAccent": "已支持中英文切换，并兼容浅色与深色模式。",
+      "primaryCta": "打开聊天",
+      "secondaryCta": "查看文档",
+      "status": {
+        "environment": {
+          "label": "环境",
+          "value": "生产预览"
+        },
+        "language": {
+          "label": "语言",
+          "value": "中文 / English"
+        },
+        "theme": {
+          "label": "主题",
+          "value": "浅色与深色"
+        }
+      }
+    },
+    "features": {
+      "eyebrow": "测试范围",
+      "titleLine1": "一个聚焦的页面",
+      "titleLine2": "用于部署验证。",
+      "description": "这个落地页保持简单清晰，用来验证路由、本地化和主题样式是否在线上正常工作。",
+      "items": {
+        "preview": {
+          "title": "生产预览",
+          "description": "用于检查线上访问地址和首屏展示的公开页面。"
+        },
+        "workflow": {
+          "title": "CLI 部署",
+          "description": "用于验证 Velobase CLI 与 GitHub Actions 的完整发布链路。"
+        },
+        "reliability": {
+          "title": "主题兼容",
+          "description": "页面使用统一设计变量，确保文字、卡片和背景在明暗模式下都清晰可读。"
+        },
+        "launch": {
+          "title": "语言就绪",
+          "description": "中英文文案都已配置，可通过顶部语言切换器进行验证。"
+        }
+      }
     }
   },
   "account": {

@@ -40,7 +40,8 @@
     "terms": "Terms",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "refundPolicy": "Refund Policy"
+    "refundPolicy": "Refund Policy",
+    "footerCopyright": "© {year} Test Project. All rights reserved."
   },
   "auth": {
     "welcomeTitle": "Welcome to AI SaaS",
@@ -123,10 +124,51 @@
   },
   "landing": {
     "hero": {
-      "titleLine1": "Build Your AI App",
-      "titleLine2": "In Record Time",
-      "subtitle": "A production-ready AI SaaS framework with auth, billing, payments, and AI chat built in.",
-      "subtitleAccent": "Focus on your core feature. We handle the rest."
+      "eyebrow": "Velobase deployment test",
+      "titleLine1": "Test Project",
+      "titleLine2": "Ready for review",
+      "subtitle": "A clean landing page for validating the test project in production.",
+      "subtitleAccent": "Language switching and light/dark themes are both enabled.",
+      "primaryCta": "Open Chat",
+      "secondaryCta": "View Docs",
+      "status": {
+        "environment": {
+          "label": "Environment",
+          "value": "Production preview"
+        },
+        "language": {
+          "label": "Language",
+          "value": "English / 中文"
+        },
+        "theme": {
+          "label": "Theme",
+          "value": "Light and dark"
+        }
+      }
+    },
+    "features": {
+      "eyebrow": "Test Scope",
+      "titleLine1": "A focused page",
+      "titleLine2": "for deployment checks.",
+      "description": "This landing page keeps the product surface simple while confirming routing, localization, and theme styles.",
+      "items": {
+        "preview": {
+          "title": "Production Preview",
+          "description": "A straightforward public page for checking the deployed project URL and first paint."
+        },
+        "workflow": {
+          "title": "CLI Deployment",
+          "description": "The page is designed to verify that the Velobase CLI and GitHub Actions path works end to end."
+        },
+        "reliability": {
+          "title": "Theme Safe",
+          "description": "Colors use shared design tokens so text, cards, and backgrounds stay readable in both themes."
+        },
+        "launch": {
+          "title": "Language Ready",
+          "description": "Copy is provided in English and Chinese, and the header language switcher can validate both."
+        }
+      }
     }
   },
   "account": {
