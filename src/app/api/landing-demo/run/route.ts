@@ -52,7 +52,7 @@ export async function POST() {
         name: "run-task",
         data: { runId, taskIndex, redisKey },
         opts: {
-          jobId: `${runId}:${taskIndex}`,
+          jobId: `${runId}-${taskIndex}`,
         },
       };
     }),
