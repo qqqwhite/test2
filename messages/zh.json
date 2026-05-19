@@ -169,6 +169,21 @@
           "description": "中英文文案都已配置，可通过顶部语言切换器进行验证。"
         }
       }
+    },
+    "demoRunner": {
+      "eyebrow": "Redis + PostgreSQL 演示",
+      "title": "执行 10 个并发任务",
+      "description": "点击按钮后会启动一轮公开演示。PostgreSQL 记录 run 和每个任务，Redis 记录实时完成计数。",
+      "button": "开始执行",
+      "running": "正在执行 10 个任务",
+      "unknownError": "未知错误",
+      "errorPrefix": "执行失败：",
+      "metrics": {
+        "runId": "Run ID",
+        "concurrency": "并发数",
+        "completed": "已完成",
+        "redis": "Redis"
+      }
     }
   },
   "account": {

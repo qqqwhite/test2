@@ -34,6 +34,18 @@ enum BlockReason {
   ADMIN_MANUAL    // 管理员手动封禁
 }
 
+enum LandingDemoRunStatus {
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
+enum LandingDemoItemStatus {
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
 enum AffiliateEarningSourceType {
   ORDER_PAYMENT
   SUBSCRIPTION_RENEWAL
@@ -162,6 +174,39 @@ model Post {
 
   @@index([name])
   @@map("posts")
+}
+
+model LandingDemoRun {
+  id             String               @id @default(cuid())
+  status         LandingDemoRunStatus @default(RUNNING)
+  concurrency    Int                  @default(10)
+  totalTasks     Int                  @map("total_tasks")
+  completedTasks Int                  @default(0) @map("completed_tasks")
+  redisKey       String               @map("redis_key")
+  startedAt      DateTime             @default(now()) @map("started_at")
+  finishedAt     DateTime?            @map("finished_at")
+  createdAt      DateTime             @default(now()) @map("created_at")
+  items          LandingDemoItem[]
+
+  @@index([createdAt])
+  @@map("landing_demo_runs")
+}
+
+model LandingDemoItem {
+  id         String                @id @default(cuid())
+  runId      String                @map("run_id")
+  taskIndex  Int                   @map("task_index")
+  status     LandingDemoItemStatus @default(RUNNING)
+  redisValue Int?                  @map("redis_value")
+  durationMs Int?                  @map("duration_ms")
+  error      String?
+  startedAt  DateTime              @default(now()) @map("started_at")
+  finishedAt DateTime?             @map("finished_at")
+  run        LandingDemoRun        @relation(fields: [runId], references: [id], onDelete: Cascade)
+
+  @@unique([runId, taskIndex])
+  @@index([runId, status])
+  @@map("landing_demo_items")
 }
 
 model Session {

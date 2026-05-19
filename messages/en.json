@@ -169,6 +169,21 @@
           "description": "Copy is provided in English and Chinese, and the header language switcher can validate both."
         }
       }
+    },
+    "demoRunner": {
+      "eyebrow": "Redis + PostgreSQL demo",
+      "title": "Run 10 concurrent tasks",
+      "description": "Click the button to start a public demo run. PostgreSQL stores the run and task records, while Redis tracks live completion counters.",
+      "button": "Start execution",
+      "running": "Running 10 tasks",
+      "unknownError": "Unknown error",
+      "errorPrefix": "Execution failed:",
+      "metrics": {
+        "runId": "Run ID",
+        "concurrency": "Concurrency",
+        "completed": "Completed",
+        "redis": "Redis"
+      }
     }
   },
   "account": {

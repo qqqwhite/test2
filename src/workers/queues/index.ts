@@ -61,3 +61,9 @@ export {
   GOOGLE_ADS_UPLOAD_QUEUE_NAME,
   type GoogleAdsUploadJobData,
 } from "./google-ads-upload.queue";
+
+export {
+  landingDemoQueue,
+  LANDING_DEMO_QUEUE_NAME,
+  type LandingDemoJobData,
+} from "./landing-demo.queue";

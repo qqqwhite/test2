@@ -55,6 +55,7 @@ const redisStub = {
   async quit() { return "OK"; },
   async disconnect() { return; },
   async connect() { return; },
+  options: { keyPrefix: "" },
   status: "ready",
   // BullMQ calls duplicate() to create subscriber/blocking connections
   duplicate() { return this; },
@@ -62,6 +63,9 @@ const redisStub = {
   on() { return this; },
   once() { return this; },
   off() { return this; },
+  removeListener() { return this; },
+  getMaxListeners() { return 10; },
+  setMaxListeners() { return this; },
   emit() { return false; },
   removeAllListeners() { return this; },
   pipeline() {

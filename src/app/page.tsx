@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/header";
 import { Background } from "@/components/layout/background";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Features } from "@/components/landing/features";
+import { DemoRunner } from "@/components/landing/demo-runner";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 
@@ -70,6 +71,8 @@ export default function HomePage() {
           </div>
         </div>
       </main>
+
+      <DemoRunner />
 
       <Features />
 

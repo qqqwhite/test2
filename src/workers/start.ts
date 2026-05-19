@@ -23,6 +23,7 @@ import {
   supportProcessQueue,
   supportSendQueue,
   googleAdsUploadQueue,
+  landingDemoQueue,
 } from "./queues";
 
 import {
@@ -48,6 +49,7 @@ import {
   registerSupportSendScheduler,
   processGoogleAdsUploadJob,
   registerGoogleAdsUploadScheduler,
+  processLandingDemoJob,
 } from "./processors";
 
 const log = createLogger("worker");
@@ -125,6 +127,11 @@ export async function startWorker(): Promise<WorkerHandle> {
   registry.register(googleAdsUploadQueue, processGoogleAdsUploadJob, {
     concurrency: 1,
     lockDuration: 300000,
+  });
+
+  registry.register(landingDemoQueue, processLandingDemoJob, {
+    concurrency: 10,
+    lockDuration: 60000,
   });
 
   // --- Register schedulers ---------------------------------------------------

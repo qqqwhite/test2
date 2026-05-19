@@ -54,3 +54,5 @@ export {
 } from "./support-send";
 
 export { processGoogleAdsUploadJob, registerGoogleAdsUploadScheduler } from "./google-ads-upload";
+
+export { processLandingDemoJob } from "./landing-demo";
