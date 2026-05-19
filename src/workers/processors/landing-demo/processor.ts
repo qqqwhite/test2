@@ -14,7 +14,13 @@ function sleep(ms: number) {
 export async function processLandingDemoJob(
   job: Job<LandingDemoJobData>,
 ): Promise<void> {
-  const { runId, taskIndex, redisKey } = job.data;
+  await processLandingDemoTask(job.data);
+}
+
+export async function processLandingDemoTask(
+  data: LandingDemoJobData,
+): Promise<void> {
+  const { runId, taskIndex, redisKey } = data;
   const startedAt = Date.now();
 
   try {
@@ -42,9 +48,7 @@ export async function processLandingDemoJob(
 
     await sleep(250 + Math.floor(Math.random() * 750));
 
-    const redisValue = await redis.hincrby(redisKey, "completed", 1);
     const durationMs = Date.now() - startedAt;
-
     const updatedItem = await db.landingDemoItem.updateMany({
       where: {
         runId,
@@ -53,7 +57,6 @@ export async function processLandingDemoJob(
       },
       data: {
         status: "SUCCEEDED",
-        redisValue,
         durationMs,
         finishedAt: new Date(),
       },
@@ -61,6 +64,12 @@ export async function processLandingDemoJob(
     if (updatedItem.count === 0) {
       return;
     }
+
+    const redisValue = await redis.hincrby(redisKey, "completed", 1);
+    await db.landingDemoItem.update({
+      where: { runId_taskIndex: { runId, taskIndex } },
+      data: { redisValue },
+    });
 
     const run = await db.landingDemoRun.update({
       where: { id: runId },

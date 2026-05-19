@@ -3,6 +3,7 @@ import { createId } from "@paralleldrive/cuid2";
 
 import { db } from "@/server/db";
 import { redis } from "@/server/redis";
+import { processLandingDemoTask } from "@/workers/processors/landing-demo";
 import { landingDemoQueue } from "@/workers/queues/landing-demo.queue";
 
 export const runtime = "nodejs";
@@ -56,6 +57,16 @@ export async function POST() {
         },
       };
     }),
+  );
+
+  await Promise.all(
+    Array.from({ length: TASK_COUNT }, (_, index) =>
+      processLandingDemoTask({
+        runId,
+        taskIndex: index + 1,
+        redisKey,
+      }),
+    ),
   );
 
   const [run, redisState] = await Promise.all([
