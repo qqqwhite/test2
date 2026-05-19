@@ -11,7 +11,7 @@ COPY package.json pnpm-lock.yaml ./
 COPY prisma ./prisma
 RUN corepack enable pnpm && \
     pnpm install --frozen-lockfile --prod --ignore-scripts && \
-    pnpm add tsx && \
+    pnpm add tsx prisma && \
     pnpm prisma generate && \
     rm -rf /root/.cache
 
@@ -29,8 +29,11 @@ COPY --chown=worker:nodejs src/env.js ./src/env.js
 COPY --chown=worker:nodejs tsconfig.json ./
 COPY --chown=worker:nodejs .env ./
 COPY --chown=worker:nodejs public/data/disposable-domains.txt ./public/data/disposable-domains.txt
+COPY --chown=worker:nodejs docker-entrypoint.sh ./
+RUN chmod +x docker-entrypoint.sh
 
 USER worker
 
-# Start worker
-CMD ["node", "--import", "tsx", "src/workers/index.ts"]
+# Run migrations once, then start worker
+ENV SERVICE_MODE=worker
+CMD ["./docker-entrypoint.sh"]
